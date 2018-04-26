@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<!--Just List Movies -->
+<div th:each="eachMovie:${movieList}">
+    <div class="row">
+        <div class="col">
+            <!--Allow the selected movie's details to be edited. Only available when seeing the director's list of movies-->
+            <p><span class="h3" th:text="${eachMovie.title}"></span> <small><a th:href="@{/editmovie?(id=${eachMovie.id})}">Edit</a></small></p>
+            <p class="h4 float-right" th:text="${eachMovie.year}"></p>
+        </div>
+    </div>
+    <p class="font-italic" th:text="${eachMovie.description}"></p>
+    <p th:text="${eachMovie.theDirector.fullName}"></p>
+</div>
+</body>
+</html>

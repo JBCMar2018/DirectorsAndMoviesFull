@@ -100,4 +100,18 @@ public class MainController {
         return "redirect:/";
     }
 
+    @RequestMapping("/showdirectors")
+    public String showDirectors(Model model)
+    {
+        model.addAttribute("directorList",directorRepo.findAll());
+        return "showdirectordetails";
+    }
+
+    @RequestMapping("/showmovies")
+    public String showMovies(Model model)
+    {
+        model.addAttribute("movieList",movieRepo.findAll());
+        return "showmoviedetails";
+    }
+
 }
