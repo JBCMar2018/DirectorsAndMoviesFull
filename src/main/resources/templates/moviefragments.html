@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:fragment="addmovie" action="/savemovie" th:object="${aMovie}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" th:field="*{title}">
+    </div>
+
+    <div class="form-group">
+        <label for="year">Year released</label>
+        <input type="text"   class="form-control" th:field="*{year}">
+    </div>
+
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" th:field="*{description}"></textarea>
+    </div>
+
+    <div class="form-group">
+        <p th:text="*{theDirector}==null?'':'Director: '+*{theDirector.fullName}"></p>
+        <input type="hidden" class="form-control" th:field="*{theDirector}">
+    </div>
+    <button>Save</button>
+</form>
+
+<div th:fragment="showMovies(movieList)" th:each="eachMovie:${movieList}">
+    <div class="row">
+        <div class="col">
+            <!--Allow the selected movie's details to be edited. Only available when seeing the director's list of movies-->
+            <p><span class="h3" th:text="${eachMovie.title}"></span> <small><a th:href="@{/editmovie?(id=${eachMovie.id})}">Edit</a></small></p>
+            <p class="h4 float-right" th:text="${eachMovie.year}"></p>
+        </div>
+    </div>
+    <p class="font-italic" th:text="${eachMovie.description}"></p>
+</div>
+</body>
+</html>

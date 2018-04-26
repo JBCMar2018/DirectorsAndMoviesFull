@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="~{setupfragments::mainhead}">
+</head>
+
+<body>
+<div class="container">
+    <!--Add a new director: The form -->
+    <div class="col-6 offset-2">
+        <form th:replace="~{moviefragments::addmovie}">
+        </form>
+    </div>
+</div>
+<!--Scripts-->
+<span th:replace="~{setupfragments::scripts}"></span>
+</body>
+</html>
