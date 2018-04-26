@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" th:field="*{fullName}">
                 </div>
                 <!--Include movie fragments for the director-->
-                <div th:replace="~{moviefragments::showMovies(${aDirector.myMovies})}"></div>
+                      <!--<div th:replace="~{moviefragments::showMovies(${aDirector.myMovies})}"></div>-->
             <div class="float-right">
                 <button class="btn btn-default">Save</button>
             </div>
@@ -26,7 +26,11 @@
             <span th:text="${eachDirector.fullName}"></span>
             <span class="badge badge-light" th:if="${#lists.size(eachDirector.myMovies)&gt;0}" th:text="${#lists.size(eachDirector.myMovies)}"></span>
             -  <a th:href="@{/editDirector?(id=${eachDirector.id})}">Edit</a> - <a th:href="@{/newmovie?(directorid=${eachDirector.id})}">Add Movie</a>
+
             <!--Show this span only if there is at least one movie. Show the number of movies (i.e. size of the list) in the director's movie list.-->
+            <div th:each="eachMovie:${eachDirector.myMovies}">
+                <p th:text="${eachMovie.title}"></p>
+            </div>
         </div>
 
         <!--${#lists.size(eachDirector.myMovies)}-->
